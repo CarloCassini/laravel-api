@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 // importo i model di cui avrò bisogno
 use App\Models\Project;
 
+// importo il controller per la gesione dell'api
+use App\Http\Controllers\Api\ProjectController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,13 +27,8 @@ use App\Models\Project;
 // });
 
 //** scrivo la rotta per gestire la API */
-Route::get("/projects", function () {
+// Route::get("/projects", [ProjectController::class, "index"]);
+//** usando api resource */
+Route::apiResource("projects", ProjectController::class)->only(["index", "show"]);
 
-    // importo la lista dei projects
-    $projects = Project::all();
-
-    // la risposta di questa chiamata è un file json
-    return response()->json([
-        "projects" => $projects
-    ]);
-});
+// sono arrivato al minuto 00:36 della lezione 83A
