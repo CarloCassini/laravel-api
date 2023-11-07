@@ -21,6 +21,10 @@ class ProjectController extends Controller
     {
         // importo la lista dei projects
         $projects = Project::select("id", "type_id", "name", "slug", "description")
+            //* il with serve a collegare le tabelle che ci interessano di cui abbiamo già creato le relazioni
+            // ->with('type', 'tecnologies')
+            //* come segue invece scelgo anche i campi che mi interessa ricevere
+            ->with('type:id,label,color', 'tecnologies:id,label,color')
             ->paginate(5);
 
         // la risposta di questa chiamata è un file json

@@ -14,6 +14,9 @@ class Tecnology extends Model
         'color',
     ];
 
+    // per non vedere la tabella pivot nelle API che verranno inviate collegate a questa tabella
+    protected $hidden = ['pivot'];
+
     public function projects()
     {
         return $this->belongsToMany(Project::class);
