@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-4">
                 <img class="img-fluid"
-                    @if ($project->cover_image) src=" {{ asset('/storage/' . $project->cover_image) }}"    
+                    @if ($project->cover_image) src="{{ asset('/storage/' . $project->cover_image) }}"    
                 @else
                 src="" @endif
                     alt="" id="cover_image_prew">

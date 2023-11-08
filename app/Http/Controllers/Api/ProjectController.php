@@ -39,14 +39,18 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         // $project = Project::find($id);
         $project = Project::select("id", "type_id", "name", "slug", "description")
             ->with('type:id,label,color', 'tecnologies:id,label,color')
-            ->where('id', '=', $id)
-            ->get();
-        return $project;
+            ->where('slug', '=', $slug)
+            ->first();
+        return response()->json($project);
+
+        // return response()->json([
+        //     "project" => $project
+        // ]);
         // todo - collegare il metodo show di api   
     }
 
