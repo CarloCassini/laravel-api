@@ -34,17 +34,6 @@ class ProjectController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -52,7 +41,13 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        // $project = Project::find($id);
+        $project = Project::select("id", "type_id", "name", "slug", "description")
+            ->with('type:id,label,color', 'tecnologies:id,label,color')
+            ->where('id', '=', $id)
+            ->get();
+        return $project;
+        // todo - collegare il metodo show di api   
     }
 
     /**
