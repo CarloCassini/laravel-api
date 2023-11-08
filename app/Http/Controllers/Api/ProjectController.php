@@ -46,12 +46,17 @@ class ProjectController extends Controller
             ->with('type:id,label,color', 'tecnologies:id,label,color')
             ->where('slug', '=', $slug)
             ->first();
+
+        if (!$project) {
+            abort(404, 'non trovato');
+        }
+        ;
+
         return response()->json($project);
 
         // return response()->json([
         //     "project" => $project
         // ]);
-        // todo - collegare il metodo show di api   
     }
 
     /**
