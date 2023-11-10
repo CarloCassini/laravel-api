@@ -25,7 +25,26 @@ class ProjectController extends Controller
             // ->with('type', 'tecnologies')
             //* come segue invece scelgo anche i campi che mi interessa ricevere
             ->with('type:id,label,color', 'tecnologies:id,label,color')
-            ->paginate(5);
+            ->paginate(8);
+
+        // la risposta di questa chiamata è un file json
+        return response()->json([
+            "projects" => $projects
+        ]);
+    }
+
+    public function ProjectByType($type_id)
+    {
+        // dump($type_id);
+
+        // importo la lista dei projects
+        $projects = Project::select("id", "type_id", "name", "slug", "description")
+            //* il with serve a collegare le tabelle che ci interessano di cui abbiamo già creato le relazioni
+            // ->with('type', 'tecnologies')
+            //* come segue invece scelgo anche i campi che mi interessa ricevere
+            ->with('type:id,label,color', 'tecnologies:id,label,color')
+            ->where('type_id', '=', $type_id)
+            ->paginate(8);
 
         // la risposta di questa chiamata è un file json
         return response()->json([

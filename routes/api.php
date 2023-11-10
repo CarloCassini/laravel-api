@@ -29,6 +29,9 @@ use App\Http\Controllers\Api\ProjectController;
 //** scrivo la rotta per gestire la API */
 // Route::get("/projects", [ProjectController::class, "index"]);
 //** usando api resource */
+Route::get("projects/type/{type_id}", [ProjectController::class, "ProjectByType"]);
+
 Route::apiResource("projects", ProjectController::class)->only(["index", "show"]);
+
 
 // sono arrivato al minuto 00:36 della lezione 83A

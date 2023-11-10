@@ -107,6 +107,14 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+
+        // todo **************************************
+        // Auth è una facade
+        // questa riga permette di proteggere la rotta se non sei la persona dedicata
+        // if ($post->Author_id != Auth::id())
+        //     abort(403);
+        // todo **************************************
+
         $types = Type::all();
         $tecnologies = Tecnology::all();
         $project_tecnologies = $project->tecnologies->pluck('id')->toArray();
